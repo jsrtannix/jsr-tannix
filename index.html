@@ -17,6 +17,7 @@
             background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2a 100%);
             color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -26,19 +27,19 @@
             padding: 0 20px;
         }
         
-        /* NOVO MENU SUPERIOR */
+        /* Menu Superior Fixo */
         .top-menu {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 30, 0.9);
+            background: rgba(10, 10, 30, 0.95);
             padding: 15px 30px;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .logo-menu {
@@ -63,10 +64,26 @@
             font-weight: 500;
             transition: color 0.3s;
             font-size: 1.1rem;
+            position: relative;
         }
         
         .nav-menu a:hover {
             color: #3498db;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
         }
         
         .social-icons {
@@ -77,29 +94,28 @@
         .social-icons a {
             color: #fff;
             font-size: 1.5rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
         
         .social-icons a:hover {
             color: #3498db;
+            transform: translateY(-3px);
         }
         
-        header {
+        /* Cabeçalho Principal */
+        .main-header {
             background: rgba(10, 10, 30, 0.8);
-            padding: 100px 0 20px 0;
-            position: sticky;
-            top: 70px;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            padding: 120px 0 40px 0;
+            text-align: center;
+            margin-top: 70px;
         }
         
         .logo {
-            text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #3498db;
-            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
-            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(52, 152, 219, 0.7);
+            margin-bottom: 15px;
         }
         
         .logo span {
@@ -107,27 +123,17 @@
         }
         
         .tagline {
-            text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: #eee;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
+        /* Seção Hero */
         .hero {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
-            background: url('https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
             position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 30, 0.85);
         }
         
         .hero-content {
@@ -136,13 +142,13 @@
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
         
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             max-width: 800px;
             margin: 0 auto 30px;
         }
@@ -152,6 +158,7 @@
             justify-content: center;
             gap: 40px;
             margin: 30px 0;
+            flex-wrap: wrap;
         }
         
         .counter {
@@ -160,6 +167,11 @@
             border-radius: 10px;
             width: 200px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .counter:hover {
+            transform: translateY(-5px);
         }
         
         .counter-number {
@@ -178,13 +190,20 @@
             border-radius: 10px;
             margin: 30px auto;
             max-width: 600px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .contact-info a {
             color: #3498db;
             text-decoration: none;
-            margin: 0 10px;
             font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
         }
         
         .contact-info a:hover {
@@ -194,10 +213,25 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin: 50px 0 30px;
+            margin: 60px 0 30px;
             color: #3498db;
+            position: relative;
+            padding-bottom: 15px;
         }
         
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 3px;
+        }
+        
+        /* Seção de Planos */
         .plans {
             display: flex;
             flex-wrap: wrap;
@@ -214,10 +248,12 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
+            border: 1px solid rgba(52, 152, 219, 0.3);
         }
         
         .plan:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .plan-name {
@@ -230,16 +266,27 @@
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 20px;
+            color: #fff;
         }
         
         .plan-features {
             list-style: none;
             margin-bottom: 20px;
+            text-align: left;
         }
         
         .plan-features li {
             padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .plan-features li::before {
+            content: '✓';
+            color: #3498db;
+            margin-right: 10px;
+            font-weight: bold;
         }
         
         .btn {
@@ -250,21 +297,25 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
         
         .btn:hover {
             background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
         }
         
         .server-badge {
             text-align: center;
             background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             margin: 40px auto;
             max-width: 600px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
         
         .server-badge h2 {
@@ -272,7 +323,7 @@
             margin-bottom: 10px;
         }
         
-        /* Novos estilos para a seção de conteúdo */
+        /* Seção de Conteúdo */
         .content-showcase {
             padding: 60px 0;
         }
@@ -337,6 +388,7 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
+            border: 1px solid rgba(52, 152, 219, 0.3);
         }
         
         .channel-item:hover {
@@ -353,7 +405,7 @@
             font-size: 1.1rem;
         }
         
-        /* Estilos para seção de aplicativos */
+        /* Seção de Aplicativos */
         .apps-section {
             padding: 60px 0;
             background: rgba(10, 10, 30, 0.5);
@@ -364,7 +416,8 @@
             border-radius: 10px;
             padding: 30px;
             margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0, 极
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(52, 152, 219, 0.3);
         }
         
         .app-card h3 {
@@ -391,18 +444,28 @@
         }
         
         .app-code {
-            background: rgba(0, 0, 0, 极
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            display: inline-block;
+            margin: 5px 0;
+            font-size: 1.1rem;
+            color: #3498db;
+            font-weight: bold;
         }
         
         .app-link {
-            display: block;
+            display: inline-block;
             margin: 10px 0;
             color: #3498db;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
         
         .app-link:hover {
+            color: #fff;
             text-decoration: underline;
         }
         
@@ -439,11 +502,11 @@
             border-radius: 10px;
             text-align: center;
             width: 180px;
+            transition: transform 0.3s;
         }
         
-        .partner-logo img {
-            max-width: 100%;
-            height: auto;
+        .partner-logo:hover {
+            transform: translateY(-5px);
         }
         
         footer {
@@ -461,11 +524,12 @@
             color: #3498db;
             font-size: 2rem;
             margin: 0 15px;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
         
         .social-links a:hover {
             color: #fff;
+            transform: translateY(-5px);
         }
         
         /* Menu responsivo */
@@ -481,6 +545,7 @@
             background: #fff;
             margin-bottom: 5px;
             border-radius: 2px;
+            transition: all 0.3s;
         }
         
         @media (max-width: 968px) {
@@ -494,6 +559,7 @@
                 background: rgba(10, 10, 30, 0.95);
                 padding: 20px;
                 text-align: center;
+                gap: 15px;
             }
             
             .nav-menu.active {
@@ -502,6 +568,18 @@
             
             .menu-toggle {
                 display: flex;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
             }
             
             .social-icons {
@@ -515,9 +593,19 @@
                 align-items: center;
             }
             
+            .counter {
+                width: 100%;
+                max-width: 250px;
+            }
+            
             .plans {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .plan {
+                width: 100%;
+                max-width: 320px;
             }
             
             .hero h1 {
@@ -543,11 +631,28 @@
             .top-menu {
                 padding: 15px 20px;
             }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- NOVO MENU SUPERIOR -->
+    <!-- Menu Superior Fixo -->
     <div class="top-menu">
         <div class="logo-menu">JSR <span>TANNIX</span></div>
         
@@ -571,25 +676,28 @@
         </div>
     </div>
     
-    <header id="inicio">
+    <!-- Cabeçalho Principal -->
+    <header class="main-header" id="inicio">
         <div class="container">
             <div class="logo">JSR <span>TANNIX</span></div>
-            <div class="tagline">O Melhor do Streaming Está Aqui</div>
+            <div class="tagline">𝐎 𝐦𝐞𝐥𝐡𝐨𝐫 𝐝𝐨 𝐬𝐭𝐫𝐞𝐚𝐦𝐢𝐧𝐠 𝐧𝐚 𝐬𝐮𝐚 𝐜𝐚𝐬𝐚!!
+𝐏𝐚𝐫𝐞 𝐝𝐞 𝐬𝐞 𝐞𝐬𝐭𝐫𝐞𝐬𝐬𝐚𝐫 𝐚𝐪𝘂𝗶 𝐭𝐞𝐦 𝐬𝐮𝐩𝐨𝐫𝐭𝐞 𝐝𝐞 𝐯𝐞𝐫𝐝𝐚𝐝𝐞</div>
         </div>
     </header>
     
+    <!-- Seção Hero -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Mais de 2000 Canais e 150.000 Conteúdos</h1>
+            <h1>Mais de <span id="counter-canais">2000</span> Canais e <span id="counter-conteudos">150000</span> Conteúdos</h1>
             <p>A melhor experiência em streaming com qualidade e estabilidade</p>
             
             <div class="counters">
                 <div class="counter">
-                    <div class="counter-number">2000+</div>
+                    <div class="counter-number" id="counter1">0</div>
                     <div class="counter-text">Canais</div>
                 </div>
                 <div class="counter">
-                    <div class="counter-number">150k+</div>
+                    <div class="counter-number" id="counter2">0</div>
                     <div class="counter-text">Conteúdos</div>
                 </div>
             </div>
@@ -622,10 +730,10 @@
                     <h3>LAZER PLAY</h3>
                 </div>
                 <div class="partner-logo">
-                    <h3>Prime</h3>
+                    <h3>XCLOUD</h3>
                 </div>
                 <div class="partner-logo">
-                    <h3>LISTS</h3>
+                    <h3>ASSIST+</h3>
                 </div>
                 <div class="partner-logo">
                     <h3>UNIPLAY</h3>
@@ -634,7 +742,7 @@
         </div>
     </section>
     
-    <!-- Nova seção de conteúdo em destaque -->
+    <!-- Seção de conteúdo em destaque -->
     <section class="content-showcase">
         <div class="container">
             <h2 class="section-title">Conteúdo em Destaque</h2>
@@ -648,7 +756,7 @@
                 </div>
                 
                 <div class="content-item">
-                    <img src="https://images.unsplash.com/photo-1662581872341-6494ed5f40ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wandinha">
+                    <img src="https://esbrasil.com.br/wp-content/uploads/2022/12/Wandinha_Netfliz_Recorde_ES-Brasil-1.jpg">
                     <div class="content-overlay">
                         <h3 class="content-title">Wandinha</h3>
                         <p class="content-category">Série • Terror</p>
@@ -656,7 +764,7 @@
                 </div>
                 
                 <div class="content-item">
-                    <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=极
+                    <img src="https://www.oxigenio.fm/wp-content/uploads/2019/08/Ozark-1.jpg">
                     <div class="content-overlay">
                         <h3 class="content-title">Ozark</h3>
                         <p class="content-category">Série • Drama</p>
@@ -664,9 +772,9 @@
                 </div>
                 
                 <div class="content-item">
-                    <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="ESPN">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQRVOmwxeDZpEP9V_1DTon8D1ltogaiWFKOw&s">
                     <div class="content-overlay">
-                        <h3 class="content-title">ESPN</h3>
+                        <h3 class="content-title">ESPN e SPORTV4K</h3>
                         <p class="content-category">Canal • Esportes</p>
                     </div>
                 </div>
@@ -712,8 +820,9 @@
         </div>
     </section>
     
+    <!-- Seção de PLANOS -->
     <section class="container" id="planos">
-        <h2 class="section-title">Planos de Assinatura</h2>
+        <h2 class="section-title">Planos</h2>
         <div class="plans">
             <div class="plan">
                 <h3 class="plan-name">Mensal</h3>
@@ -736,7 +845,7 @@
                     <li>Suporte 24/7</li>
                     <li>Multi-dispositivos</li>
                 </ul>
-                <a href="极
+                <a href="https://wa.me/5571988250986?text=Quero assinar o plano Bimestral" class="btn">Assinar Agora</a>
             </div>
             
             <div class="plan">
@@ -745,9 +854,10 @@
                 <ul class="plan-features">
                     <li>Acesso a todos os canais</li>
                     <li>Qualidade Full HD/4K</li>
-                    <li>Suporte 24/极
+                    <li>Suporte 24/7</li>
                     <li>Multi-dispositivos</li>
                 </ul>
+                <a href="极
                 <a href="https://wa.me/5571988250986?text=Quero assinar o plano Trimestral" class="btn">Assinar Agora</a>
             </div>
             
@@ -756,16 +866,16 @@
                 <div class="plan-price">R$ 150,00</div>
                 <ul class="plan-features">
                     <li>Acesso a todos os canais</li>
-                    <极
+                    <li>Qualidade Full HD/4K</li>
                     <li>Suporte 24/7</li>
                     <li>Multi-dispositivos</li>
                 </ul>
-                <a href="https://wa.me/5571988250986?text=极
+                <a href="https://wa.me/5571988250986?text=Quero assinar o plano Semestral" class="btn">Assinar Agora</a>
             </div>
             
             <div class="plan">
                 <h3 class="plan-name">Anual</h3>
-                <div class="plan-price">R$ 280,极
+                <div class="plan-price">R$ 280,00</div>
                 <ul class="plan-features">
                     <li>Acesso a todos os canais</li>
                     <li>Qualidade Full HD/4K</li>
@@ -777,13 +887,13 @@
         </div>
     </section>
     
-    <!-- Seção de Vantagens (movida para baixo dos planos) -->
+    <!-- Seção de Vantagens -->
     <section class="content-showcase" id="vantagens">
         <div class="container">
-            <h2 class="section-title">Vantagens Exclusivas</h2>
+            <h2 class="section-title">Vantagens de ser Tannix</h2>
             <div class="content-grid">
                 <div class="content-item">
-                    <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Qualidade de Imagem">
+                    <img src="https://blog.intelbras.com.br/wp-content/uploads/2018/06/4k-resolucao-de-imagem.png">
                     <div class="content-overlay">
                         <h3 class="content-title">Qualidade Full HD/4K</h3>
                         <p class="content-category">Imagem de altíssima qualidade</p>
@@ -791,7 +901,7 @@
                 </div>
                 
                 <div class="content-item">
-                    <img src="https://images.unsplash.com/极
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn419yOogmcDCOhUR6wZycK15LDvxeFg1wlQ&s">
                     <div class="content-overlay">
                         <h3 class="content-title">Multiplataforma</h3>
                         <p class="content-category">Assista em qualquer dispositivo</p>
@@ -799,7 +909,7 @@
                 </div>
                 
                 <div class="content-item">
-                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&极
+                    <img src="https://www.apple.com/newsroom/images/2025/02/major-league-soccer-kicks-off-30th-season-this-weekend-on-mls-season-pass/article/Apple-TV-MLS-season-kickoff-Lionel-Messi-art_big.jpg.large.jpg">
                     <div class="content-overlay">
                         <h3 class="content-title">Conteúdo Exclusivo</h3>
                         <p class="content-category">Filmes, séries e canais premium</p>
@@ -807,7 +917,7 @@
                 </div>
                 
                 <div class="content-item">
-                    <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Suporte 24/7">
+                    <img src="https://img.freepik.com/vetores-premium/servicos-24-horas-suporte-247-suporte-tecnico-ajuda-ao-cliente-suporte-tecnico-atendimento-ao-cliente-conceito-de-negocios-e-tecnologia-wireframe-mao-tocando-interface-digital-ilustracao-vetorial_127544-2407.jpg">
                     <div class="content-overlay">
                         <h3 class="content-title">Suporte 24/7</h3>
                         <p class="content-category">Atendimento sempre disponível</p>
@@ -817,6 +927,7 @@
         </div>
     </section>
     
+    <!-- Seção de Planos de Revenda -->
     <section class="container">
         <h2 class="section-title">Planos de Revenda</h2>
         <div class="plans">
@@ -829,11 +940,12 @@
             <div class="plan">
                 <h3 class="plan-name">20 Créditos</h3>
                 <div class="plan-price">R$ 200,00</div>
+                <a href="https://wa.me/5571988250986?text=Quero comprar o plano de 20 créditos para revenda" class="btn">
                 <a href="https://wa.me/5571988250986?text=Quero comprar o plano de 20 créditos para revenda" class="btn">Comprar</a>
             </div>
             
             <div class="plan">
-                <h3 class="plan-name">30 Créditos</极
+                <h3 class="plan-name">30 Créditos</h3>
                 <div class="plan-price">R$ 285,00</div>
                 <a href="https://wa.me/5571988250986?text=Quero comprar o plano de 30 créditos para revenda" class="btn">Comprar</a>
             </div>
@@ -852,12 +964,13 @@
             
             <div class="plan">
                 <h3 class="plan-name">100 Créditos</h3>
-                <div class="plan-price">R$ 700,00</div>
+                <div class="plan-price">R$ 700,00
                 <a href="https://wa.me/5571988250986?text=Quero comprar o plano de 100 créditos para revenda" class="btn">Comprar</a>
             </div>
         </div>
     </section>
     
+    <!-- Badge do Servidor -->
     <div class="container">
         <div class="server-badge">
             <h2>#Uniplay - O Melhor Servidor do Mercado</h2>
@@ -865,8 +978,8 @@
         </div>
     </div>
     
-    <!-- Seção de aplicativos (reposicionada para o final) -->
-    <section class="apps-section">
+    <!-- Seção de Aplicativos -->
+    <section class="apps-section" id="contato">
         <div class="container">
             <h2 class="section-title">Nossos Aplicativos Exclusivos</h2>
             
@@ -898,12 +1011,12 @@
                 
                 <div class="app-info">
                     <div class="app-details">
-                        <p><极
+                        <p><strong>Recursos exclusivos:</strong></p>
                         <ul class="feature-list">
                             <li>Interface moderna inspirada no sistema Netflix</li>
                             <li>Recomendações personalizadas baseadas no seu histórico</li>
                             <li>Continue assistindo de onde parou</li>
-                            <li>Listas de favoritos e watchlist</li>
+                            <li>Listas de favoritos и watchlist</li>
                             <li>Busca inteligente por título, ator ou gênero</li>
                             <li>Qualidade de vídeo adaptativa (até 4K)</li>
                         </ul>
@@ -911,17 +1024,18 @@
                         <p><strong>Download direto:</strong> <a href="https://aftv.news/1471519" class="app-link" target="_blank">https://aftv.news/1471519</a></p>
                         <p><strong>Código downloader:</strong> <span class="app-code">1471519</span></p>
                         
-                        <p><strong>Nota:</strong> Para melhor experiência, recomendamos usar este aplicativo em dispositivos com pelo menos 2GB de RAM.</p>
+                        <p><strong>Nota:</strong> Para melhor experiência, recomendamos usar este aplicativo em dispositivos com pelo menos 6GB de RAM.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <footer id="contato">
+    <!-- Rodapé -->
+    <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://wa.me/5571988250986" target="_blank"><i class="fab fa-whatsapp"></极
+                <a href="https://wa.me/5571988250986" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://instagram.com/jsrtannix23" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://youtube.com/@jsrtannix107" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
@@ -932,16 +1046,58 @@
 
     <script>
         // Menu mobile toggle
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
         
         // Fechar menu ao clicar em um link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                document.getElementById('navMenu').classList.remove('active');
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
             });
         });
+        
+        // Adicionar margem ao conteúdo principal para compensar o menu fixo
+        document.addEventListener('DOMContentLoaded', function() {
+            const headerHeight = document.querySelector('.top-menu').offsetHeight;
+            document.querySelector('.main-header').style.marginTop = headerHeight + 'px';
+            
+            // Iniciar contadores
+            animateCounter('counter1', 0, 2000, 2000);
+            animateCounter('counter2', 0, 150000, 2500);
+        });
+        
+        // Função para animar contadores
+        function animateCounter(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            
+            stepTime = Math.max(stepTime, minTimer);
+            
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+            
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value.toLocaleString();
+                if (value === end) {
+                    clearInterval(timer);
+                }
+            }
+            
+            timer = setInterval(run, stepTime);
+            run();
+        }
     </script>
 </body>
 </html>
